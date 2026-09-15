@@ -47,8 +47,7 @@ export default function App() {
 			tabRef.current = next
 
 			/* Направление перехода забирает CSS: уходим влево или вправо. */
-			document.documentElement.dataset.vt =
-				orderOf(next) > orderOf(current) ? "fwd" : "back"
+			document.documentElement.dataset.vt = orderOf(next) > orderOf(current) ? "fwd" : "back"
 
 			/* Где есть View Transitions — смену панелей считает компоузитор браузера. */
 			if (reducedMotion || typeof document.startViewTransition !== "function") {

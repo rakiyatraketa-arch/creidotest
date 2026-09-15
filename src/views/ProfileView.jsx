@@ -7,12 +7,7 @@ const SLOTS = [0, 1]
 /** «Профиль» — пустое состояние и два слота. */
 function ProfileViewBase() {
 	return (
-		<section
-			className="view"
-			id="panel-profile"
-			role="tabpanel"
-			aria-labelledby="tab-profile"
-		>
+		<section className="view" id="panel-profile" role="tabpanel" aria-labelledby="tab-profile">
 			<span className="avatar reveal">
 				<UserIcon width="30" height="30" />
 			</span>

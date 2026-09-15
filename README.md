@@ -8,9 +8,15 @@
 npm install
 npm run dev     # http://localhost:5173
 npm run build   # сборка в dist/
+npm run lint    # ESLint
+npm run format  # Prettier
 ```
 
-Файл `dist/` пересобирается командой `npm run build`.
+## CI и деплой
+
+- Каждый пуш и PR прогоняются через GitHub Actions: `npm ci` → lint → build (`.github/workflows/ci.yml`).
+- Пуш в `master` дополнительно публикует `dist/` на GitHub Pages: https://rakiyatraketa-arch.github.io/creidotest/
+- В прод-сборку плагин `injectCsp` в `vite.config.js` вставляет Content-Security-Policy; в dev он не нужен — Vite использует inline-скрипты Fast Refresh.
 
 ## Структура
 
@@ -44,15 +50,15 @@ src/
 
 Палитра строго чёрно-белая, без оттенков цвета: глубина строится прозрачностью чернил и толщиной линий.
 
-| Токен | Светлая | Тёмная |
-| --- | --- | --- |
-| `--canvas` | `#ffffff` | `#0a0a0a` |
-| `--ink` | `#0a0a0a` | `#ffffff` |
-| `--ink-dim` | `rgba(10,10,10,.58)` | `rgba(255,255,255,.62)` |
-| `--line` | `rgba(10,10,10,.12)` | `rgba(255,255,255,.14)` |
-| `--glass` | `rgba(255,255,255,.74)` | `rgba(16,16,16,.68)` |
+| Токен       | Светлая                 | Тёмная                  |
+| ----------- | ----------------------- | ----------------------- |
+| `--canvas`  | `#ffffff`               | `#0a0a0a`               |
+| `--ink`     | `#0a0a0a`               | `#ffffff`               |
+| `--ink-dim` | `rgba(10,10,10,.58)`    | `rgba(255,255,255,.62)` |
+| `--line`    | `rgba(10,10,10,.12)`    | `rgba(255,255,255,.14)` |
+| `--glass`   | `rgba(255,255,255,.74)` | `rgba(16,16,16,.68)`    |
 
-Тема переключается кнопкой в шапке, запоминается в `localStorage` и до первого выбора следует за системной (`prefers-color-scheme`). Атрибут `data-theme` выставляет inline-скрипт в `<head>` — первый кадр без мигания.
+Тема переключается кнопкой в шапке, запоминается в `localStorage` и до первого выбора следует за системной (`prefers-color-scheme`). Атрибут `data-theme` выставляет внешний скрипт `public/theme.js` в `<head>` — первый кадр без мигания.
 
 ## Анимации
 
