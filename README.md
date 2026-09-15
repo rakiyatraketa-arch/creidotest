@@ -100,7 +100,7 @@ src/
 - `content-visibility: auto` + `contain-intrinsic-size` на слотах.
 - Смена табов через View Transitions API + `flushSync` — один коммит и переход на композиторе.
 - Делегированный `onClick` в dock вместо замыкания на каждую кнопку.
-- Сборка: `--charset=utf8` (кириллица без `\uXXXX`) и `--target=chrome120,safari17,firefox121`.
+- Сборка: `target: es2020` и `cssMinify: lightningcss` в `vite.config.js`.
 - `@media (hover: hover)` вокруг всех hover-правил — на таче ничего не залипает; на телефоне отключён дрейф третьего светового пятна.
 - Поддержаны `prefers-reduced-transparency` и `prefers-contrast: more`.
 
