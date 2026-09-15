@@ -10,7 +10,7 @@ npm run dev     # http://localhost:5173
 npm run build   # сборка в dist/
 ```
 
-Файл `creido-landing.html` — та же сборка одним файлом: открывается браузером без npm и без сети.
+Файл `dist/` пересобирается командой `npm run build`.
 
 ## Структура
 
@@ -22,10 +22,13 @@ src/
     TopBar.jsx            логотип, статус, переключатель темы
     FxLayer.jsx           слой эффектов (свет, сетка, луч, зерно)
     BottomNav.jsx         нижний dock: две SVG-кнопки + бегунок
+    Loader.jsx            пятисекундная cinematic-заставка
     Slot.jsx              пустой слот со скелетонами
     Icons.jsx             инлайн-SVG на currentColor
   hooks/
     usePointerFx.js       курсор → CSS-переменные через rAF
+    useFxIdle.js          пауза декора на скрытой вкладке
+    useMediaQuery.js      один matchMedia на запрос (useSyncExternalStore)
     useReducedMotion.js   реакция на prefers-reduced-motion
     useTheme.js           белая / чёрная тема + localStorage
   views/
@@ -76,12 +79,6 @@ src/
 - Список моделей — вместо `<Slot />` в `views/HomeView.jsx`
 - Новые табы — в массив `TABS` в `components/BottomNav.jsx` (бегунок считает ширину сам, поправьте `width` у `.dock__pill`)
 - Новые цвета и радиусы — только в `styles/tokens.css`
-
-## Превью на iPhone
-
-`creido-iphone.html` — тот же однофайловый билд внутри макета iPhone 15 Pro (393 × 852 pt): динамический остров, статус-бар, полоска жестов, боковые кнопки. Открывается двойным кликом; тема — переключателем под телефоном или `?theme=dark` в адресе.
-
-В самом приложении есть поддержка устройства: `viewport-fit=cover`, `env(safe-area-inset-*)` в токенах (`--safe-top`, `--safe-bottom`), высота через `100dvh`, `overscroll-behavior: none` и `touch-action: manipulation`.
 
 ## v0.4 — пятисекундный cinematic loader
 
