@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, viewport-fit=cover"
+		/>
+		<meta name="description" content="creido — агрегатор моделей. Пустой каркас лендинга." />
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+		<title>creido — агрегатор моделей</title>
+		<script>
+			/* Тема выставляется до первого кадра — без мигания белым. */
+			;(function () {
+				/* window.__CREIDO_THEME__ — жёсткая фиксация темы для превью и макетов */
+				var stored = window.__CREIDO_THEME__ || null
+				try {
+					if (!stored) stored = localStorage.getItem("creido-theme")
+				} catch (e) {}
+				var dark = stored
+					? stored === "dark"
+					: window.matchMedia("(prefers-color-scheme: dark)").matches
+				document.documentElement.dataset.theme = dark ? "dark" : "light"
+			})()
+		</script>
+	</head>
+	<body>
+		<div id="root"></div>
+		<script type="module" src="./assets/app.js"></script>
+	</body>
+</html>

@@ -1,0 +1,84 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+	height: 100%;
+}
+
+/* iOS Safari: dvh не прыгает при скрытии адресной строки */
+@supports (height: 100dvh) {
+	html,
+	body,
+	#root {
+		height: 100dvh;
+	}
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	background-color: var(--canvas);
+	color: var(--ink);
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+		Arial, sans-serif;
+	font-size: 16px;
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+	overflow-x: hidden;
+	overscroll-behavior: none;
+	touch-action: manipulation;
+	-webkit-touch-callout: none;
+}
+
+h1,
+h2,
+p {
+	margin: 0;
+}
+
+button {
+	font: inherit;
+	color: inherit;
+	border: 0;
+	background: none;
+	cursor: pointer;
+	-webkit-tap-highlight-color: transparent;
+}
+
+svg {
+	display: block;
+}
+
+::selection {
+	background: var(--ink);
+	color: var(--canvas);
+}
+
+/* Фокус с клавиатуры: двойное кольцо — видно и на белом, и на чёрном. */
+:focus-visible {
+	outline: 2px solid var(--ink);
+	outline-offset: 3px;
+	border-radius: var(--radius-sm);
+	box-shadow: 0 0 0 6px var(--glow-soft);
+}
+
+/* Без движения: гасим всё, что двигается само по себе. */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.001ms !important;
+		scroll-behavior: auto !important;
+	}
+}
